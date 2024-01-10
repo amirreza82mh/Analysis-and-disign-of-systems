@@ -24,12 +24,13 @@
     <!--Forms-->
     <div class="box-2">
         <form action="/user/login/" method="post">
+            {% csrf_token %}
             <div class="box-2">
                 <div class="login-form-container">
                     <h1>Login Form</h1>
-                    <input type="text" placeholder="Username" class="input-field">
+                    <input type="text" name="username" placeholder="Username" class="input-field">
                     <br><br>
-                    <input type="password" placeholder="Password" class="input-field">
+                    <input type="password" name="password" placeholder="Password" class="input-field">
                     <br><br>
                     <button class="login-button" type="submit">Login</button>
                 </div>

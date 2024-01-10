@@ -52,5 +52,10 @@ class SignUpForm(forms.Form):
     is_viewer = forms.BooleanField(required=False)
 
 
-class login(forms.Form):
-    pass
+class LoginForm(forms.Form):
+    username = username = forms.CharField(validators=[username_validator])
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        validators=[password_validator]
+    )
