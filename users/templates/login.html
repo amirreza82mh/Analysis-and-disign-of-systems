@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="container">
+    <!--Data or Content-->
+    <div class="box-1">
+        <div class="content-holder">
+            <h2>Hello!</h2>
+           
+            <button class="button-1" onclick="signup()">Sign up</button>
+            <button class="button-2" onclick="login()">Login</button>
+        </div>
+    </div>
+  
+    
+    <!--Forms-->
+    <div class="box-2">
+        <form action="/user/login/" method="post">
+            <div class="box-2">
+                <div class="login-form-container">
+                    <h1>Login Form</h1>
+                    <input type="text" placeholder="Username" class="input-field">
+                    <br><br>
+                    <input type="password" placeholder="Password" class="input-field">
+                    <br><br>
+                    <button class="login-button" type="submit">Login</button>
+                </div>
+            <!-- </div> -->
+        </form>
+    </div>
+  
+  
+  <!--Create Container for Signup form-->
+  <div class="signup-form-container">
+    <form action="/user/signup/" method="post">
+        {% csrf_token %}
+        <div>
+            <h1>Sign Up Form</h1>
+            <input type="text" name="username" placeholder="Username" class="input-field">
+            <br><br>
+            <input type="email" name="email" placeholder="Email" class="input-field">
+            <br><br>
+            <input type="tel" name="phone_number" placeholder="Phone Number" class="input-field">
+            <br><br>
+            <input type="password" name="password1" placeholder="Password" class="input-field">
+            <br><br>
+            <input type="password" name="password2" placeholder="Confirm Password" class="input-field">
+            <br><br>
+            <select name="type" class="input-field">
+                <option value="is_curator">Curator</option>
+                <option value="is_artist">Artist</option>
+                <option value="is_viewer" selected>Viewer</option>
+              </select>
+              <br><br>
+            <button class="signup-button" type="submit">Sign Up</button>
+        </div>
+    </form>
+</div>
+    <script src="{% static 'login.js' %}"></script>  
+</body>
+</html>
