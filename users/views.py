@@ -6,9 +6,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
 
-def index(request):
-    return render(request, 'index.html')
-
 def signupview(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)

@@ -20,33 +20,34 @@ class Artwork(models.Model):
     creation_time = models.TimeField(auto_now_add=True)
 
 
-# class Exhibition(models.Model):
-#     exhibition_id = models.AutoField(primary_key=True)
-#     capacity = models.IntegerField(null=False, default=20)
-#     exhibition_place = models.CharField(max_length=255, null=False)
-#     description = models.TextField()
-#     picture =   picture = models.ImageField(upload_to='picture/' ,null=False, blank=False)
-#     start_date = models.DateField()
-#     finish_date = models.DateField()
+class Exhibition(models.Model):
+    exhibition_id = models.AutoField(primary_key=True)
+    exhibition_name = models.CharField(max_length=100, null=False)
+    capacity = models.IntegerField(default=20)
+    exhibition_place = models.CharField(max_length=255, null=False)
+    description = models.TextField(null=False)
+    picture =   picture = models.ImageField(upload_to='home/picture' ,null=False, blank=False)
+    start_date = models.DateField(null=False)
+    finish_date = models.DateField(null=False)
 
-# class Sans(models.Model):
-#     exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
-#     start_time = models.DateTimeField()
-#     finish_time = models.DateField()
+class Sans(models.Model):
+    exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
+    start_time = models.DateTimeField()
+    finish_time = models.DateField()
 
-#     class Meta:
-#         unique_together = (('exhibition', 'start_time', 'finish_time'),)
+    class Meta:
+        unique_together = (('exhibition', 'start_time', 'finish_time'),)
 
-# class Artwork_Exhibition_Curator(models.Model):
-#     exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
-#     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
-#     curator = models.ForeignKey(User, on_delete=models.CASCADE)
-#     class Meta:
-#         unique_together = (('exhibition', 'artwork', 'curator'),)
+class Artwork_Exhibition_Curator(models.Model):
+    exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
+    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
+    curator = models.ForeignKey(User, on_delete=models.CASCADE)
+    class Meta:
+        unique_together = (('exhibition', 'artwork', 'curator'),)
 
-# class Exhibition_Viewer(models.Model):
-#     viewer = models.ForeignKey(User, on_delete=models.CASCADE)
-#     exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
+class Exhibition_Viewer(models.Model):
+    viewer = models.ForeignKey(User, on_delete=models.CASCADE)
+    exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
 
-#     class Meta:
-#         unique_together = (('exhibition', 'viewer'),)
+    class Meta:
+        unique_together = (('exhibition', 'viewer'),)
