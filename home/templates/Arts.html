@@ -49,7 +49,7 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
                 نمایشگاه آثار هنری
             </a>
 
@@ -170,12 +170,12 @@
                                 <img class="card-img rounded-0 img-fluid" src="/{{art.picture}}">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="art-disc.html"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="/home/artwork_detail/{{art.artwork_id}}"><i class="far fa-eye"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">{{art.artwork_name}}</a>
+                                <a href="/home/artwork_detail/{{art.artwork_id}}" class="h3 text-decoration-none">{{art.artwork_name}}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li class="pt-2">
                                         <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
@@ -348,7 +348,7 @@
                     <h2 class="h2 text-light border-bottom pb-3 border-light">آثار هنری</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         {% for i in arts_limit %}
-                            <li><a class="text-decoration-none" href="#">{{i.artwork_name}}</a></li>
+                            <li><a class="text-decoration-none" href="/home/artwork_detail/{{i.artwork_id}}">{{i.artwork_name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

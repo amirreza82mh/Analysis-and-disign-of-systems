@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render
-from .models import Artwork, Exhibition
+from .models import Artwork, Exhibition, Artwork_Exhibition_Curator
 from users.models import User
 from django.db.models import Q
 
@@ -25,11 +25,15 @@ def artwork_page(request):
     }
     return render(request, 'Arts.html', context=context)
 
-def artwork_detail(request, id):
-    ob = Artwork.objects.get(artwork_id=id)
 
-    if ob is not None:
-        return render(request, 'test1.html', context={'Artwork' : ob})
+def artwork_detail(request, id):
+    artwork = Artwork.objects.get(artwork_id=id)
+    ob = Artwork_Exhibition_Curator.objects.all()
+    arts_limit = Artwork.objects.all()[:5]
+    arts = Artwork.objects.all()
+
+    if artwork is not None:
+        return render(request, 'art-disc.html', context={'artwork' : artwork, 'ob' : ob, 'arts' : arts, 'arts_limit' : arts_limit})
     
     else: 
         raise Http404('artwork not exist')
