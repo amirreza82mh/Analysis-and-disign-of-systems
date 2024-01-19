@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
-from .models import Artwork, Exhibition, Artwork_Exhibition_Curator, Contact
+from .models import Artwork, Exhibition, Artwork_Exhibition_Curator, Contact, Sans
 from .forms import ContactForm
 from users.models import User
 from django.db.models import Q
@@ -88,12 +88,15 @@ def contact_us(request):
 
 @login_required(login_url='login_view')
 def reserve_ticket(request, id):
+    sanses = Sans.objects.all()
     arts_limit = Artwork.objects.all()[:5]
     exhibition = Exhibition.objects.get(exhibition_id=id)
 
     context={
         'exhibition' : exhibition,
-        'arts_limit' : arts_limit
+        'arts_limit' : arts_limit,
+        'sanses' : sanses,
+        'id' : id
     }
 
     if exhibition is not None:
@@ -101,3 +104,7 @@ def reserve_ticket(request, id):
     
     else: 
         raise Http404('Exhibition not exist')
+    
+def reserve_form(request):
+    if request.method == "POST":
+        pass   

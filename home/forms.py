@@ -14,3 +14,7 @@ class ContactForm(forms.Form):
     email = forms.EmailField(validators=[email_validator])
     subject = forms.CharField(max_length=255)
     text = forms.CharField(widget=forms.Textarea())
+
+
+class ReserveForm(forms.Form):
+    date = forms.DateField()

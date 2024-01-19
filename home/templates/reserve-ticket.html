@@ -134,14 +134,11 @@
     <div class="mb-3">
         <label for="inputmessage" style="position: relative;left: 46%;">انتخاب زمان بازدید</label>
         <select class="form-control mt-1" style="position: relative; left: 41%; width: 320px; text-align: center; border-radius: 20px; border-color: black;" id="message" name="message" placeholder="امتیاز را وارد کنید" rows="8" multiple>
-            <option value="value1">1402/11/05</option>
-            <option value="value2">1402/11/07</option>
-            <option value="value2">1402/11/08</option>
-            <option value="value2">1402/11/12</option>
-            <option value="value2">1402/11/13</option>
-            <option value="value2">1402/11/15</option>
-            <option value="value2">1402/11/17</option>
-
+            {% for i in sanses %}
+                {% if i.exhibition.exhibition_id == id %}
+                    <option value="{{i.start_time}}">{{i.start_time}}-{{i.finish_time}}</option>
+                {% endif %}
+            {% endfor %}
         </select>
         </div>
         <br><br>

@@ -29,4 +29,22 @@ class AdminContact(admin.ModelAdmin):
 
 admin.site.register(models.Contact, AdminContact)
 
-admin.site.register(models.Sanse_Viewer)
+
+class AdminSanse(admin.ModelAdmin):
+    list_display=[
+        'ticket'
+    ]
+
+admin.site.register(models.Sanse_Viewer, AdminSanse)
+
+
+class AdminAEC(admin.ModelAdmin):
+    list_display=[
+        'exhibition',
+        'artwork',
+        'curator',
+    ]
+admin.site.register(models.Artwork_Exhibition_Curator, AdminAEC)
+
+
+admin.site.register(models.Sans)

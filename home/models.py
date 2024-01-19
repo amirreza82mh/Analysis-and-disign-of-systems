@@ -32,7 +32,7 @@ class Exhibition(models.Model):
 
 class Sans(models.Model):
     exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
-    start_time = models.DateTimeField()
+    start_time = models.DateField()
     finish_time = models.DateField()
 
     class Meta:
@@ -46,7 +46,7 @@ class Artwork_Exhibition_Curator(models.Model):
         unique_together = (('exhibition', 'artwork', 'curator'),)
 
 class Sanse_Viewer(models.Model):
-    ticket = models.CharField(max_length=255)
+    ticket = models.CharField(max_length=255, unique=True)
     viewer = models.ForeignKey(User, on_delete=models.CASCADE)
     sanse = models.ForeignKey(Sans, on_delete=models.CASCADE)
 
