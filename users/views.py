@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, UpdateForm
 from .models import User
 from django.template import loader
 from django.contrib import messages
@@ -78,6 +78,31 @@ def loginview(request):
     
     return render(request, 'login.html', context={'form': form})
 
+
+def Update(request):
+    if request.method == "POST":
+        form = UpdateForm(request.POST)
+
+        if form.is_valid():
+            info = form.cleaned_data
+
+            user = User.objects.get(id=request.user.id)
+            user.first_name = info['first_name']
+            user.last_name = info['last_name']
+            user.email = info['email']
+            user.phone_number = info['phone_number']
+            user.username = info['username']
+            user.save()
+
+            return redirect('home_page')
+
+        else:
+            messages.error(request, 'form is not valid', extra_tags="danger")
+            return redirect('home_page')
+    
+    else:
+        raise Http404('don not do this')
+    
 
 @login_required(login_url='login_view')
 def select_dash(request):

@@ -59,3 +59,11 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(),
         validators=[password_validator]
     )
+
+
+class UpdateForm(forms.Form):
+    first_name = forms.CharField(max_length=255)
+    last_name = forms.CharField(max_length=255)
+    email = forms.EmailField(validators=[email_validator])
+    phone_number = forms.CharField(validators=[phone_number_validator])
+    username = forms.CharField(validators=[username_validator])
