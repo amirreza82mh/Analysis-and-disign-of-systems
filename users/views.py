@@ -78,6 +78,7 @@ def loginview(request):
     
     return render(request, 'login.html', context={'form': form})
 
+
 @login_required(login_url='login_view')
 def select_dash(request):
     if request.user.is_artist:
@@ -115,6 +116,7 @@ def curator_dashboard(request):
         return render(request, 'curator-dash.html', context={'curator': request.user, 'arts_limit' : arts_limit})
     else:
         raise Http404('access denied!')
+    
     
 @login_required(login_url='login')
 def logout_func(request):
