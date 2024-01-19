@@ -1,8 +1,10 @@
 from django.http import Http404
-from django.shortcuts import render
-from .models import Artwork, Exhibition, Artwork_Exhibition_Curator
+from django.shortcuts import render, redirect
+from .models import Artwork, Exhibition, Artwork_Exhibition_Curator, Contact
+from .forms import ContactForm
 from users.models import User
 from django.db.models import Q
+from django.contrib import messages
 
 def home_page(request):
     exhibitions = Exhibition.objects.all().values()
@@ -38,6 +40,7 @@ def artwork_detail(request, id):
     else: 
         raise Http404('artwork not exist')
     
+    
 def about_us(request):
     arts_limit = Artwork.objects.all()[:5]
     
@@ -46,6 +49,40 @@ def about_us(request):
     }
 
     return render(request, 'about.html', context=context)
+
+
+def contact_us(request):
+    arts_limit = Artwork.objects.all()[:5]
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+    
+        if form.is_valid():
+            info = form.cleaned_data
+
+            try:
+                info[request.POST.get('type')] = True
+                Contact.objects.create(first_last_name=info['first_last_name'], email=info['email'], subject=info['subject'], text=info['text'])
+                messages.success(request, 'User successfully SignUp', extra_tags="success")
+                return redirect('contact_us_page')
+            
+            except Exception as error:
+                    messages.error(request, error, extra_tags="danger")
+                    return redirect('contact_us_page')
+            
+        else:
+            messages.error(request, form.errors, extra_tags="danger")
+            return redirect('contact_us_page')
+    
+    else:
+        form = ContactForm()
+
+        context= {
+            'arts_limit' : arts_limit,
+            'form' : form
+        }
+
+    return render(request, 'contact.html', context=context)
 
 
 def exhibition_detail(request, id):

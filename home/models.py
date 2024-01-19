@@ -52,3 +52,9 @@ class Sanse_Viewer(models.Model):
 
     class Meta:
         unique_together = (('ticket','sanse', 'viewer'),)
+
+class Contact(models.Model):
+    first_last_name = models.CharField(max_length = 100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    text = models.TextField()

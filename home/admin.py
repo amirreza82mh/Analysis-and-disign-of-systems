@@ -11,6 +11,7 @@ class AdminArtwork(admin.ModelAdmin):
 
 admin.site.register(models.Artwork, AdminArtwork)
 
+
 class AdminExhibition(admin.ModelAdmin):
     list_display=[
         'exhibition_id',
@@ -19,3 +20,11 @@ class AdminExhibition(admin.ModelAdmin):
     ]
 
 admin.site.register(models.Exhibition, AdminExhibition)
+
+
+class AdminContact(admin.ModelAdmin):
+    list_display=[
+        'first_last_name',
+    ]
+
+admin.site.register(models.Contact, AdminContact)
