@@ -129,7 +129,7 @@
                             <ul class="collapse show list-unstyled pl-3">
                                 {% for art in arts %}
                                     {% if art.artist.id == a.id %}
-                                        <li><a class="text-decoration-none" href="#">{{art.artwork_name}}</a></li>
+                                        <li><a class="text-decoration-none" href="/home/artwork_detail/{{art.artwork_id}}">{{art.artwork_name}}</a></li>
                                     {% endif %}
                                 {% endfor %}
                             </ul>

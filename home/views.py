@@ -85,11 +85,17 @@ def contact_us(request):
     return render(request, 'contact.html', context=context)
 
 
-def exhibition_detail(request, id):
-    ob = Exhibition.objects.get(exhibition_id=id)
+def reserve_ticket(request, id):
+    arts_limit = Artwork.objects.all()[:5]
+    exhibition = Exhibition.objects.get(exhibition_id=id)
 
-    if ob is not None:
-        return render(request, 'test2.html', context={'exhibition' : ob})
+    context={
+        'exhibition' : exhibition,
+        'arts_limit' : arts_limit
+    }
+
+    if exhibition is not None:
+        return render(request, 'reserve-ticket.html', context=context)
     
     else: 
         raise Http404('Exhibition not exist')

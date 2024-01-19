@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>صفحه اصلی</title>
+    <title>رزرو بلیط</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,11 +16,9 @@
     <link rel="stylesheet" href="{% static 'templatemo.css' %}">
     <link rel="stylesheet" href="{% static 'custom.css' %}">
 
-
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- <link rel="stylesheet" href="{% static 'fontawesome.min.css' %}"> -->
 <!--
     
 
@@ -55,7 +53,7 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="#">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
                 نمایشگاه آثار هنری
             </a>
 
@@ -67,7 +65,7 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">رزرو بلیط</a>
+                            <a class="nav-link" href="/">رزرو بلیط</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/home/artworks/">آثار هنری</a>
@@ -89,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    <a class="nav-icon position-relative text-decoration-none" href="viewer-dash.html">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                     </a>
                 </div>
@@ -115,152 +113,40 @@
             </form>
         </div>
     </div>
-
-
-
-    <!-- Start Banner Hero -->
-    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src=/{{exhibitions.0.picture}} alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>{{exhibitions.0.exhibition_name}}</b></h1>
-                                <h3 class="h2">نمایشگاه {{exhibitions.0.exhibition_name}}</h3>
-                                <p>
-                                    {{exhibitions.0.description}}<br>{{exhibitions.0.exhibition_place}} 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src=/{{exhibitions.1.picture}} alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-success"><b>{{exhibitions.1.exhibition_name}}</b></h1>
-                                <h3 class="h2">نمایشگاه {{exhibitions.1.exhibition_name}}</h3>
-                                <p>
-                                    {{exhibitions.1.description}}<br>{{exhibitions.1.exhibition_place}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src=/{{exhibitions.2.picture}} alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-success"><b>{{exhibitions.2.exhibition_name}}</b></h1>
-                                <h3 class="h2">نمایشگاه {{exhibitions.2.exhibition_name}}</h3>
-                                <p>
-                                    {{exhibitions.2.description}}<br>{{exhibitions.2.exhibition_place}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br><br>
-        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
-            <i class="fas fa-chevron-left"></i>
-        </a>
-        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
-            <i class="fas fa-chevron-right"></i>
-        </a>
-    </div>
-    <!-- End Banner Hero -->
-
-
     <!-- Start Categories of The Month -->
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">رزرو بلیط جهت بازدید از نمایشگاه ها</h1>
+                <h1 class="h1">ثبت و رزرو بلیط جهت بازدید  </h1>
                 <p>
-                    جهت رزرو بلیط برای بازدید از نمایشگاه های قابل مشاهده از دکمه رزرو استفاده کنید
+                    لطفا فیلدهای موردنیاز را جهت رزرو بلیط تکمیل کنید
                 </p>
             </div>
         </div>
-        <div class="row">
-            {% for i in exhibitions %}
-                <div class="col-12 col-md-4 p-5 mt-3">
-                    <a href="#"><img src=/{{i.picture}} class="rounded-circle img-fluid border"></a>
-                    <h5 class="text-center mt-3 mb-3">{{i.exhibition_name}}</h5>
-                    <p class="text-center"><a class="btn btn-success" href="/home/reserve_ticket/{{i.exhibition_id}}">رزرو بلیط</a></p>
-                </div>
-            {% endfor %}
+        <div class="row" style="position: relative; left: 33%;">
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="#"><img src="/{{exhibition.picture}}" class="rounded-circle img-fluid border"></a>
+                <h5 class="text-center mt-3 mb-3">{{exhibition.exhibition_name}}</h5>
+                <!-- <p class="text-center"><a class="btn btn-success">رزرو بلیط</a></p> -->
+            </div>
         </div>
     </section>
+    <div class="mb-3">
+        <label for="inputmessage" style="position: relative;left: 46%;">انتخاب زمان بازدید</label>
+        <select class="form-control mt-1" style="position: relative; left: 41%; width: 320px; text-align: center; border-radius: 20px; border-color: black;" id="message" name="message" placeholder="امتیاز را وارد کنید" rows="8" multiple>
+            <option value="value1">1402/11/05</option>
+            <option value="value2">1402/11/07</option>
+            <option value="value2">1402/11/08</option>
+            <option value="value2">1402/11/12</option>
+            <option value="value2">1402/11/13</option>
+            <option value="value2">1402/11/15</option>
+            <option value="value2">1402/11/17</option>
+
+        </select>
+        </div>
+        <br><br>
+        <p class="text-center" style="position: relative; right:1%;"><a class="btn btn-success">رزرو بلیط</a></p>
     <!-- End Categories of The Month -->
-
-
-    <!-- Start Featured Product -->
-    <section class="bg-light">
-        <div class="container py-5">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">آثار محبوب</h1>
-                    <p>
-                        محبوب ترین آثار از دید بازدیدکنندگان را مشاهده کنید
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                {% for art in arts %}
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="/home/artwork_detail/{{art.artwork_id}}">
-                            <img src="/{{ art.picture }}" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    {% for i in ''|rjust:art.rating %}
-                                        <i class="text-warning fa fa-star"></i>
-                                    {% endfor %}
-                                    {% with x=5|sub:art.rating %}
-                                        {% for i in ''|rjust:x %}
-                                            <i class="text-muted fa fa-star"></i>
-                                        {% endfor %}
-                                    {% endwith %}
-                                </li>
-                                <li class="text-muted text-right">{{ art.artist.first_name }}</li>
-                            </ul>
-                            <a href="/home/artwork_detail/{{art.artwork_id}}" class="h2 text-decoration-none text-dark">{{ art.artwork_name }}</a>
-                            <p class="card-text">
-                                {{ art.description }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    <!-- End Featured Product -->
-
-
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
@@ -287,7 +173,7 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">آثار هنری</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        {% for i in arts %}
+                        {% for i in arts_limit %}
                             <li><a class="text-decoration-none" href="/home/artwork_detail/{{i.artwork_id}}">{{i.artwork_name}}</a></li>
                         {% endfor %}
                     </ul>
@@ -296,7 +182,7 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">دسترسی</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">رزرو بلیط</a></li>
+                        <li><a class="text-decoration-none" href="/">رزرو بلیط</a></li>
                         <li><a class="text-decoration-none" href="/home/artworks/">آثار هنری</a></li>
                         <li><a class="text-decoration-none" href="/home/about_us/">درباره ما</a></li>
                         <li><a class="text-decoration-none" href="/home/contact_us/">تماس با ما</a></li>
