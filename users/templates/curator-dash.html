@@ -1,11 +1,10 @@
 {% load static %}
-{% load mathfilters %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>تماس با ما</title>
+    <title>حساب کاربری</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,7 +50,7 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
                 نمایشگاه آثار هنری
             </a>
 
@@ -72,7 +71,7 @@
                             <a class="nav-link" href="/home/about_us/">درباره ما</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">تماس با ما</a>
+                            <a class="nav-link" href="/home/contact_us/">تماس با ما</a>
                         </li>
                     </ul>
                 </div>
@@ -85,10 +84,6 @@
                             </div>
                         </div>
                     </div>
-                    <a class="nav-icon position-relative text-decoration-none" href="/user/show_dashboard/">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
-                    </a>
                 </div>
             </div>
 
@@ -112,51 +107,84 @@
             </form>
         </div>
     </div>
-
-
-    <!-- Start Content Page -->
-    <div class="container-fluid bg-light py-5">
-        <div class="col-md-6 m-auto text-center">
-            <h1 class="h1">تماس با ما</h1>
-            <p>
-                به اطلاع کاربران عزیز سایت می رساند، اگر سوالات یا نیاز به اطلاعات بیشتر دارید<br>میتوانید با ما تماس بگیرید. تیم پشتیبانی ما آماده است تا به شما کمک کند<br>لطفا از فرم تماس زیر استفاده کنید یا به آدرس ایمیل و شماره تلفن زیر پیام دهید<br>آدرس ایمیل:info@shahroodut.ac.ir <br>شماره تلفن:023-323-92204 <br>ما منتظر شنیدن نظرات و پیشنهادات شما هستیم تا بتوانیم خدمات خود را بهبود بخشیم<br>با تشکر از حمایت شما
-            </p>
-        </div>
-    </div>
     <!-- Start Contact -->
-    <div class="container py-5">
+    <!-- یوزرنیم - ایمیل- شماره - نام - -->
+    <div class="container py-5" style="height: 450px;">
         <div class="row py-5">
-            <form action="/home/contact_us/" class="col-md-9 m-auto" method="post">
-                {% csrf_token %}
+            <form class="col-md-9 m-auto" method="post" role="form">
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname">نام و نام خانوادگی</label>
-                        <input type="text" class="form-control mt-1" id="name" name="first_last_name" placeholder="Name">
+                        <label for="inputname">نام</label>
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="{{curator.first_name}}">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">نام خانوادگی</label>
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="{{curator.last_name}}">
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputemail">آدرس ایمیل</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
+                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="{{curator.email}}">
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="inputsubject">موضوع</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject">
-                </div>
-                <div class="mb-3">
-                    <label for="inputmessage">متن پیام</label>
-                    <textarea class="form-control mt-1" id="message" name="text" placeholder="Message" rows="8"></textarea>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">شماره همراه</label>
+                        <input type="tel" class="form-control mt-1" id="email" name="email" placeholder="{{curator.phone_number}}">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">نام کاربری</label>
+                        <input type="tel" class="form-control mt-1" id="email" name="email" placeholder="{{curator.username}}">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">ارسال</button>
+                        <button type="submit" class="btn btn-success btn-lg px-3">ثبت</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <!-- End Contact -->
-
-
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">تعریف سانس جدید</h1>
+            <br>
+            <div class="mb-3">
+                <label for="inputmessage">انتخاب آثار جهت نمایش در سانس</label>
+                <select class="form-control mt-1" style="width: 470px; height: 120px; position: relative; left: 25%; border-radius: 20px; text-align: center;" id="message" name="message" placeholder="امتیاز را وارد کنید" rows="8" multiple>
+                    <option value="value1">چهارفصل</option>
+                    <option value="value2">گیتاریست پیر</option>
+                    <option value="value3">دکتر گاشه</option>
+                    <option value="value4">بوسه</option>
+                    <option value="value5">پیگمالیون و گالاتئا</option>
+                    <option value="value6">تداوم حافظه</option>
+                    <option value="value6">تولد ونوس</option>
+                    <option value="value6">جیغ</option>
+                    <option value="value6">پسری با پیپ</option>
+                </select>
+                </div>
+                <form action="#">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname" style="position: relative; left: 50%;">زمان شروع نمایش</label>
+                        <input type="date" style="border-radius: 20px; position: relative; left: 50%; text-align: center;" class="form-control mt-1" id="name" name="name" placeholder="اعتمادی">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname" style="position: relative; left: 50%;">زمان پایان نمایش</label>
+                        <input type="date" style="border-radius: 20px; position: relative; left: 50%; text-align: center;" class="form-control mt-1" id="name" name="name" placeholder="اعتمادی">
+                    </div>
+                    <div class="row">
+                        <div>
+                        <button type="submit" style="border-radius: 15px; height: 45px; width: 45px; background-color: rgb(13, 182, 13); border-color:rgb(13, 182, 13) ;">ثبت</button>
+                        </div>
+                    </div>
+                    <br><br><br><br><br>
+                    <div class="row">
+                        <div>
+                        <button type="submit" style="background-color: rgb(255, 86, 86); border-radius: 10px; border-color: rgb(255, 86, 86); height: 40px;">خروج از حساب کابری  </button>
+                        </div>
+                    </div>
+                </form>
+                <a href="/user/logout/">سیکتیر</a>
+        </div>
+    </div>
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
@@ -195,7 +223,7 @@
                         <li><a class="text-decoration-none" href="/">رزرو بلیط</a></li>
                         <li><a class="text-decoration-none" href="/home/artworks/">آثار هنری</a></li>
                         <li><a class="text-decoration-none" href="/home/about_us/">درباره ما</a></li>
-                        <li><a class="text-decoration-none" href="#">تماس با ما</a></li>
+                        <li><a class="text-decoration-none" href="/home/contact_us/">تماس با ما</a></li>
                     </ul>
                 </div>
 

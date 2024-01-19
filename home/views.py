@@ -5,6 +5,8 @@ from .forms import ContactForm
 from users.models import User
 from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 def home_page(request):
     exhibitions = Exhibition.objects.all().values()
@@ -84,7 +86,7 @@ def contact_us(request):
 
     return render(request, 'contact.html', context=context)
 
-
+@login_required(login_url='login_view')
 def reserve_ticket(request, id):
     arts_limit = Artwork.objects.all()[:5]
     exhibition = Exhibition.objects.get(exhibition_id=id)

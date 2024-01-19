@@ -28,3 +28,5 @@ class AdminContact(admin.ModelAdmin):
     ]
 
 admin.site.register(models.Contact, AdminContact)
+
+admin.site.register(models.Sanse_Viewer)

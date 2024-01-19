@@ -5,6 +5,9 @@ from django.template import loader
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.decorators import login_required
+from home.models import Artwork
+from django.http import Http404
 
 def signupview(request):
     if request.method == 'POST':
@@ -47,10 +50,20 @@ def loginview(request):
             password = info['password']
             user = authenticate(request, username=username, password=password)
 
-            if user is not None:
+            if user is not None and user.is_artist:
                 login(request=request, user=user)
                 messages.success(request, 'login successfull', extra_tags="succuss")
-                return redirect('index')
+                return redirect('artist_dashboard')
+            
+            elif user is not None and user.is_viewer:
+                login(request=request, user=user)
+                messages.success(request, 'login successfull', extra_tags="succuss")
+                return redirect('viewer_dashboard')
+
+            elif user is not None and user.is_curator:
+                login(request=request, user=user)
+                messages.success(request, 'login successfull', extra_tags="succuss")
+                return redirect('curator_dashboard')
             
             else:
                 messages.error(request, 'invalid credentials', extra_tags="danger")
@@ -64,3 +77,48 @@ def loginview(request):
         form = LoginForm(request.POST)
     
     return render(request, 'login.html', context={'form': form})
+
+@login_required(login_url='login_view')
+def select_dash(request):
+    if request.user.is_artist:
+        return redirect('artist_dashboard')
+            
+    elif request.user.is_viewer:
+        return redirect('viewer_dashboard')
+
+    elif request.user.is_curator:
+        return redirect('curator_dashboard')
+
+
+@login_required(login_url='login_view')
+def viewer_dashboard(request):
+    arts_limit = Artwork.objects.all()[:5]
+    if request.user.is_viewer:
+        return render(request, 'viewer-dash.html', context={'viewer': request.user, 'arts_limit' : arts_limit})
+    else:
+        raise Http404('access denied!')
+    
+    
+@login_required(login_url='login_view')
+def artist_dashboard(request):
+    arts_limit = Artwork.objects.all()[:5]
+    if request.user.is_artist:
+        return render(request, 'artist-dash.html', context={'artist': request.user, 'arts_limit' : arts_limit})
+    else:
+        raise Http404('access denied!')
+
+    
+@login_required(login_url='login_view')
+def curator_dashboard(request):
+    arts_limit = Artwork.objects.all()[:5]
+    if request.user.is_curator:
+        return render(request, 'curator-dash.html', context={'curator': request.user, 'arts_limit' : arts_limit})
+    else:
+        raise Http404('access denied!')
+    
+@login_required(login_url='login')
+def logout_func(request):
+    logout(request)
+    messages.success(request, 'logged out successfully!', extra_tags="success")
+
+    return redirect('home_page')
