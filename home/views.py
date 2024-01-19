@@ -38,6 +38,15 @@ def artwork_detail(request, id):
     else: 
         raise Http404('artwork not exist')
     
+def about_us(request):
+    arts_limit = Artwork.objects.all()[:5]
+    
+    context = {
+        'arts_limit' : arts_limit,
+    }
+
+    return render(request, 'about.html', context=context)
+
 
 def exhibition_detail(request, id):
     ob = Exhibition.objects.get(exhibition_id=id)
