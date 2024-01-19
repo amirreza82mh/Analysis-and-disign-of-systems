@@ -1,6 +1,16 @@
 {% load static %}
-{{Artwork.artwork_id}} <hr>
+<!-- {{Artwork.artwork_id}} <hr>
 {{Artwork.artwork_name}} <hr>
 {{Artwork.picture}} <hr>
 
-<img src=/{{Artwork.picture}}>
+<img src=/{{Artwork.picture}}> -->
+
+<!-- {% for i in arts %}
+    {{i.artist.username}} <br>
+{% endfor %} -->
+
+{{arts.0.rating}}
+
+{% for number in ''|rjust:5 %}
+    {{ number }}
+{% endfor %}

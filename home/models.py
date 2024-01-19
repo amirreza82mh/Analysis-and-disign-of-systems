@@ -45,9 +45,10 @@ class Artwork_Exhibition_Curator(models.Model):
     class Meta:
         unique_together = (('exhibition', 'artwork', 'curator'),)
 
-class Exhibition_Viewer(models.Model):
+class Sanse_Viewer(models.Model):
+    ticket = models.CharField(max_length=255)
     viewer = models.ForeignKey(User, on_delete=models.CASCADE)
-    exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
+    sanse = models.ForeignKey(Sans, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = (('exhibition', 'viewer'),)
+        unique_together = (('ticket','sanse', 'viewer'),)
