@@ -14,6 +14,17 @@ def home_page(request):
     return render(request, 'Home.html', context=context)
 
 
+def artwork_page(request):
+    arts = Artwork.objects.all()
+    arts_limit = Artwork.objects.all()[:5]
+    artist = User.objects.filter(is_artist=1)
+    context = {
+        'arts' : arts,
+        'arts_limit': arts_limit,
+        'artist': artist,
+    }
+    return render(request, 'Arts.html', context=context)
+
 def artwork_detail(request, id):
     ob = Artwork.objects.get(artwork_id=id)
 

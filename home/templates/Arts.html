@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>رزرو بلیط</title>
+    <title>آثار هنری</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,16 +16,10 @@
     <link rel="stylesheet" href="{% static 'templatemo.css' %}">
     <link rel="stylesheet" href="{% static 'custom.css' %}">
 
-
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- <link rel="stylesheet" href="{% static 'fontawesome.min.css' %}"> -->
-<!--
-    
 
-
--->
 </head>
 
 <body>
@@ -91,6 +85,7 @@
                     </div>
                     <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                     </a>
                 </div>
             </div>
@@ -118,155 +113,212 @@
 
 
 
-    <!-- Start Banner Hero -->
-    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src=/{{exhibitions.0.picture}} alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>{{exhibitions.0.exhibition_name}}</b></h1>
-                                <h3 class="h2">نمایشگاه {{exhibitions.0.exhibition_name}}</h3>
-                                <p>
-                                    {{exhibitions.0.description}}<br>{{exhibitions.0.exhibition_place}} 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src=/{{exhibitions.1.picture}} alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-success"><b>{{exhibitions.1.exhibition_name}}</b></h1>
-                                <h3 class="h2">نمایشگاه {{exhibitions.1.exhibition_name}}</h3>
-                                <p>
-                                    {{exhibitions.1.description}}<br>{{exhibitions.1.exhibition_place}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src=/{{exhibitions.2.picture}} alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-success"><b>{{exhibitions.2.exhibition_name}}</b></h1>
-                                <h3 class="h2">نمایشگاه {{exhibitions.2.exhibition_name}}</h3>
-                                <p>
-                                    {{exhibitions.2.description}}<br>{{exhibitions.2.exhibition_place}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br><br>
-        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
-            <i class="fas fa-chevron-left"></i>
-        </a>
-        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
-            <i class="fas fa-chevron-right"></i>
-        </a>
-    </div>
-    <!-- End Banner Hero -->
-
-
-    <!-- Start Categories of The Month -->
-    <section class="container py-5">
-        <div class="row text-center pt-3">
-            <div class="col-lg-6 m-auto">
-                <h1 class="h1">رزرو بلیط جهت بازدید از نمایشگاه ها</h1>
-                <p>
-                    جهت رزرو بلیط برای بازدید از نمایشگاه های قابل مشاهده از دکمه رزرو استفاده کنید
-                </p>
-            </div>
-        </div>
+    <!-- Start Content -->
+    <div class="container py-5">
         <div class="row">
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src=/{{exhibitions.0.picture}} class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">{{exhibitions.0.exhibition_name}}</h5>
-                <p class="text-center"><a class="btn btn-success">رزرو بلیط</a></p>
+
+            <div class="col-lg-3">
+                <h1 class="h2 pb-4">دسته بندی</h1>
+                <ul class="list-unstyled templatemo-accordion">
+                    {% for a in artist %}
+                        <li class="pb-3">
+                            <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                                {{a.first_name}} {{a.last_name}}
+                                <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                            </a>
+                            <ul class="collapse show list-unstyled pl-3">
+                                {% for art in arts %}
+                                    {% if art.artist.id == a.id %}
+                                        <li><a class="text-decoration-none" href="#">{{art.artwork_name}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src=/{{exhibitions.1.picture}} class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">{{exhibitions.1.exhibition_name}}</h2>
-                <p class="text-center"><a class="btn btn-success">رزرو بلیط</a></p>
+
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline shop-top-menu pb-3 pt-1">
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">همه</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">جدیدترین</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none" href="#">محبوب ترین</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 pb-4">
+                        <div class="d-flex">
+                            <select class="form-control">
+                                <option>آثار تمام هنرمندان</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {% for art in arts %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 product-wap rounded-0">
+                            <div class="card rounded-0">
+                                <img class="card-img rounded-0 img-fluid" src="/{{art.picture}}">
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+                                        <li><a class="btn btn-success text-white mt-2" href="art-disc.html"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a href="shop-single.html" class="h3 text-decoration-none">{{art.artwork_name}}</a>
+                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                    <li class="pt-2">
+                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                    <li>
+                                        {% for i in ''|rjust:art.rating %}
+                                            <i class="text-warning fa fa-star"></i>
+                                        {% endfor %}
+                                        {% with x=5|sub:art.rating %}
+                                            {% for i in ''|rjust:x %}
+                                                <i class="text-muted fa fa-star"></i>
+                                            {% endfor %}
+                                        {% endwith %}
+                                    </li>
+                                </ul>
+                                <p class="text-center mb-0">{{art.artist.first_name}} {{art.artist.last_name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div div="row">
+                    <ul class="pagination pagination-lg justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src=/{{exhibitions.2.picture}} class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">{{exhibitions.2.exhibition_name}}</h2>
-                <p class="text-center"><a class="btn btn-success">رزرو بلیط</a></p>
-            </div>
+
         </div>
-    </section>
-    <!-- End Categories of The Month -->
+    </div>
+    <!-- End Content -->
 
-
-    <!-- Start Featured Product -->
-    <section class="bg-light">
-        <div class="container py-5">
+    <!-- Start Brands -->
+    <section class="bg-light py-5">
+        <div class="container my-4">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">آثار محبوب</h1>
+                    <h1 class="h1">هنرمندان برتر</h1>
                     <p>
-                        محبوب ترین آثار از دید بازدیدکنندگان را مشاهده کنید
+                        با توجه به نظرات کاربرن و میزان محبوبیت آثار ثبت شده می توانید تعدادی از هنرمندان برتر را مشاهده نمایید
                     </p>
                 </div>
-            </div>
-            <div class="row">
-                {% for art in arts %}
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="/{{ art.picture }}" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    {% for i in ''|rjust:art.rating %}
-                                        <i class="text-warning fa fa-star"></i>
-                                    {% endfor %}
-                                    {% with x=5|sub:art.rating %}
-                                        {% for i in ''|rjust:x %}
-                                            <i class="text-muted fa fa-star"></i>
-                                        {% endfor %}
-                                    {% endwith %}
-                                </li>
-                                <li class="text-muted text-right">{{ art.artist.first_name }}</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">{{ art.artwork_name }}</a>
-                            <p class="card-text">
-                                {{ art.description }}
-                            </p>
+                <div class="col-lg-9 m-auto tempaltemo-carousel">
+                    <div class="row d-flex flex-row">
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
+                                <i class="text-light fas fa-chevron-left"></i>
+                            </a>
                         </div>
+                        <!--End Controls-->
+
+                        <!--Carousel Wrapper-->
+                        <div class="col">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
+                                <!--Slides-->
+                                <div class="carousel-inner product-links-wap" role="listbox">
+
+                                    <!--First slide-->
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist1.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist2.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist3.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist4.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End First slide-->
+
+                                    <!--Second slide-->
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist5.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist6.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist7.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist8.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End Second slide-->
+
+                                    <!--Third slide-->
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist9.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist10.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist11.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="/assets/img/artist12.jpg" alt="Brand Logo"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End Third slide-->
+
+                                </div>
+                                <!--End Slides-->
+                            </div>
+                        </div>
+                        <!--End Carousel Wrapper-->
+
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
+                                <i class="text-light fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <!--End Controls-->
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
     </section>
-    <!-- End Featured Product -->
+    <!--End Brands-->
 
 
     <!-- Start Footer -->
@@ -295,7 +347,7 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">آثار هنری</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        {% for i in arts %}
+                        {% for i in arts_limit %}
                             <li><a class="text-decoration-none" href="#">{{i.artwork_name}}</a></li>
                         {% endfor %}
                     </ul>
@@ -361,7 +413,6 @@
                 </div>
             </div>
         </nav>
-
     </footer>
     <!-- End Footer -->
 
