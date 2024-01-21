@@ -67,3 +67,9 @@ class UpdateForm(forms.Form):
     email = forms.EmailField(validators=[email_validator])
     phone_number = forms.CharField(validators=[phone_number_validator])
     username = forms.CharField(validators=[username_validator])
+
+class ArtworkForm(forms.Form):
+    artwork_name = forms.CharField(max_length=50)
+    rating = forms.IntegerField()
+    picture = forms.ImageField()
+    description = forms.CharField(widget=forms.Textarea())

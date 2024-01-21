@@ -1,4 +1,5 @@
 {% load static %}
+{% load mathfilters %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -144,69 +145,79 @@
         </div>
     </div>
     <!-- End Contact -->
+    
     <div class="container-fluid bg-light py-5">
         <div class="col-md-6 m-auto text-center">
+        <form action="/user/test/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
             <h1 class="h1">ثبت اثر</h1>
             <br>
             <div class="form-group col-md-6 mb-3">
                 <label for="inputname" style="position: relative; left: 50%;">نام اثر</label>
-                <input type="text" style="border-radius: 20px; position: relative; left: 50%; text-align: center;" class="form-control mt-1" id="name" name="name" placeholder="نام اثر را وارد کنید">
+                <input type="text" style="border-radius: 20px; position: relative; left: 50%; text-align: center;" class="form-control mt-1" id="name" name="artwork_name" placeholder="نام اثر را وارد کنید">
             </div>
             <div class="mb-3">
                 <label for="inputmessage">امتیاز اثر</label>
-                <select class="form-control mt-1" style="width: 470px; height: 41px; position: relative; left: 25%; border-radius: 20px; text-align: center;" id="message" name="message" placeholder="امتیاز را وارد کنید" rows="8">
-                    <option value="value1">0</option>
-                    <option value="value2">1</option>
-                    <option value="value2">2</option>
-                    <option value="value2">3</option>
-                    <option value="value2">4</option>
-                    <option value="value2">5</option>
-                </select>
+                <input type="number", name="rating">
+                <!-- <select class="form-control mt-1" style="width: 470px; height: 41px; position: relative; left: 25%; border-radius: 20px; text-align: center;" id="message" name="rating" placeholder="امتیاز را وارد کنید" rows="8">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> -->
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="inputname" style="position: relative; left: 50%;">تصویر اثر</label>
-                <input type="file" style="border-radius: 20px; position: relative; left: 50%; text-align: center;" class="form-control mt-1" id="name" name="name" placeholder="اعتمادی">
+                <input type="file" style="border-radius: 20px; position: relative; left: 50%; text-align: center;" class="form-control mt-1" id="name" name="picture" placeholder="اعتمادی">
             </div>
             <div class="mb-3">
                 <label for="inputmessage">توضیحات اثر</label>
-                <textarea class="form-control mt-1" style="border-radius: 20px; text-align: center;" id="message" name="message" placeholder="توضیحات را وارد کنید" rows="8"></textarea>
+                <input type="text" class="form-control mt-1" style="border-radius: 20px; text-align: center;" id="message" name="description" placeholder="توضیحات را وارد کنید" rows="8"></input>
             </div>
             <div class="row">
                 <div>
                     <button type="submit" style="border-radius: 15px; height: 45px; width: 45px; background-color: rgb(13, 182, 13); border-color:rgb(13, 182, 13) ;">ثبت</button>
                 </div>
             </div>
+        </form>
             <br><br><br><br><br>
             <h1 class="h1">آثار ثبت شده</h1>
+    
             <br><br>
+            {% for i in user_art %}
             <div class="col-12 col-md-4 mb-4" style="position: relative; left: 33%;">
                 <div class="card h-100">
                     <a href="art-disc.html">
-                        <img src="./assets/img/ar2.jpg" class="card-img-top" alt="...">
+                        <img src="/{{i.picture}}" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
                         <ul class="list-unstyled d-flex justify-content-between">
                             <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
+                                {% for i in ''|rjust:i.rating %}
+                                    <i class="text-warning fa fa-star"></i>
+                                {% endfor %}
+                                {% with x=5|sub:i.rating %}
+                                    {% for i in ''|rjust:x %}
+                                        <i class="text-muted fa fa-star"></i>
+                                    {% endfor %}
+                                {% endwith %}
                             </li>
-                            <li class="text-muted text-right">پابلو پیکاسو</li>
+                            <li class="text-muted text-right">{{i.artist.first_name}} {{i.artist.last_name}}</li>
                         </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">گیتاریست پیر</a>
-                        <p class="card-text">
-                            پیکاسو از رنگ روغن برای کشیدن تابلوی گیتاریست پیر استفاده کرده است و رنگ های آبی تیره این اثر اقاکننده نوعی حس مالیخولیا و غم است. تک رنگ بودن این نقاشی نوعی حالت دوبعدی و صاف را ایجاد کرده است. با نگاه به تابلو به نوعی جاودانگی گیتاریست را حس می کنیم زیرا کشف زمان یا مکانی که گیتاریست در آن قرار دارد غیرممکن است.پیکاسو برای رنگ آمیزی گیتار از رنگ قهوه ای استفاده کرده است
-                        </p>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">{{i.artwork_name}}</a>
+                        <p class="card-text">{{i.description}}</p>
                     </div>
                 </div>
             </div>
+            {% endfor %}
             <br><br><br><br><br>    
             <div class="row">
                 <div>
+                    <form action="/user/logout/" method="get">
                     <button type="submit" style="background-color: rgb(255, 86, 86); border-radius: 10px; border-color: rgb(255, 86, 86); height: 40px;">خروج از حساب کابری  </button>
-                    <a href="/user/logout/">سیکتیر</a>
+                    </form>
                 </div>
             </div>
         </div>

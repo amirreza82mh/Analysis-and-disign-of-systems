@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, LoginForm, UpdateForm
+from .forms import SignUpForm, LoginForm, UpdateForm, ArtworkForm
 from .models import User
 from django.template import loader
 from django.contrib import messages
@@ -82,7 +82,6 @@ def loginview(request):
 def Update(request):
     if request.method == "POST":
         form = UpdateForm(request.POST)
-
         if form.is_valid():
             info = form.cleaned_data
 
@@ -128,8 +127,9 @@ def viewer_dashboard(request):
 @login_required(login_url='login_view')
 def artist_dashboard(request):
     arts_limit = Artwork.objects.all()[:5]
+    user_art = Artwork.objects.filter(artist=request.user)
     if request.user.is_artist:
-        return render(request, 'artist-dash.html', context={'artist': request.user, 'arts_limit' : arts_limit})
+        return render(request, 'artist-dash.html', context={'artist': request.user, 'arts_limit' : arts_limit, 'user_art' : user_art})
     else:
         raise Http404('access denied!')
 
@@ -149,3 +149,27 @@ def logout_func(request):
     messages.success(request, 'logged out successfully!', extra_tags="success")
 
     return redirect('home_page')
+
+
+def test(request):
+    if request.method == "POST":
+        form = ArtworkForm(request.POST, request.FILES)
+        print(form.is_valid())
+        if form.is_valid():
+            info = form.cleaned_data
+
+            art_name = info['artwork_name']
+            rating = info['rating']
+            picture = info['picture']
+            dec = info['description']
+
+            Artwork.objects.create(artist=request.user, artwork_name=art_name, description=dec, rating=rating, picture=picture)
+
+            return redirect('artwork_page')
+        
+        else:
+            print(form.errors)
+            return redirect('artist_dashboard')
+        
+    else:
+        raise Http404
